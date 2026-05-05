@@ -50,22 +50,29 @@
 
 /* Marquee */
 .marqueeWrapper {
-  margin-top: var(--space-12);
+  margin-top: var(--space-8);
   position: relative;
   width: 100%;
   mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  overflow: hidden;
+  padding: var(--space-4) 0;
 }
 
 .marqueeTrack {
   display: flex;
   gap: var(--space-6);
-  animation: marquee 50s linear infinite;
+  animation: marquee 40s linear infinite;
   width: max-content;
 }
 
 .marqueeTrack:hover {
   animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* Testimonial Card */

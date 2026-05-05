@@ -15,66 +15,36 @@
   margin-bottom: var(--space-3);
 }
 
-/* Carousel controls */
-.carouselControls {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  margin-bottom: var(--space-6);
+/* Marquee */
+.marqueeWrapper {
+  margin-top: var(--space-8);
+  position: relative;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  overflow: hidden;
+  padding: var(--space-4) 0;
 }
 
-.scrollBtn {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--transition-base);
-  color: var(--color-text);
-}
-
-.scrollBtn:hover {
-  background: var(--color-secondary);
-  color: #fff;
-  border-color: var(--color-secondary);
-  box-shadow: var(--shadow-glow);
-}
-
-.scrollBtnDisabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.scrollBtnDisabled:hover {
-  background: var(--color-surface);
-  color: var(--color-text);
-  border-color: var(--color-border-light);
-  box-shadow: none;
-}
-
-/* Carousel */
-.carousel {
+.marqueeTrack {
   display: flex;
   gap: var(--space-6);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: var(--space-4);
-  scrollbar-width: none;
+  animation: marquee 30s linear infinite;
+  width: max-content;
 }
 
-.carousel::-webkit-scrollbar {
-  display: none;
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 /* Video card */
 .videoCard {
   flex: 0 0 350px;
-  scroll-snap-align: start;
   background: var(--color-surface);
   border-radius: var(--radius-xl);
   overflow: hidden;

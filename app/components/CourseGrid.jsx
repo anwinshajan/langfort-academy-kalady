@@ -5,6 +5,16 @@ import styles from './CourseGrid.module.css';
 
 const courses = [
   {
+    icon: '🇩🇪',
+    title: 'German Language',
+    subtitle: 'From A1 to Advanced Levels',
+    description:
+      'Best language institute with periodic classes from Fr. Joseph Puthussery from Germany and qualified trainers. From A1 beginners to advanced levels.',
+    features: ['A1 to C2 Levels', 'Native Trainers', 'Goethe Exam Prep', 'Cultural Immersion'],
+    color: '#ef4444',
+    gradient: 'linear-gradient(135deg, #ef4444, #f87171)',
+  },
+  {
     icon: '🌍',
     title: 'IELTS',
     subtitle: 'International English Language Testing System',
@@ -13,16 +23,6 @@ const courses = [
     features: ['Academic & General Training', 'Band 7+ Strategy', 'Mock Tests Included', 'Flexible Batches'],
     color: '#2563eb',
     gradient: 'linear-gradient(135deg, #2563eb, #3b82f6)',
-  },
-  {
-    icon: '🩺',
-    title: 'OET',
-    subtitle: 'Occupational English Test',
-    description:
-      'Formal examination assessing the English language proficiency of healthcare professionals. Specialized training for nurses, doctors, and other healthcare workers.',
-    features: ['Healthcare Focused', 'All 4 Sub-tests', 'Expert Faculty', 'Online & Offline'],
-    color: '#10b981',
-    gradient: 'linear-gradient(135deg, #10b981, #34d399)',
   },
   {
     icon: '💻',
@@ -35,14 +35,24 @@ const courses = [
     gradient: 'linear-gradient(135deg, #8b5cf6, #a78bfa)',
   },
   {
-    icon: '🇩🇪',
-    title: 'German Language',
-    subtitle: 'From A1 to Advanced Levels',
+    icon: '🩺',
+    title: 'OET',
+    subtitle: 'Virtual Classroom & Packages',
     description:
-      'Best language institute with periodic classes from Fr. Joseph Puthussery from Germany and qualified trainers. From A1 beginners to advanced levels.',
-    features: ['A1 to C2 Levels', 'Native Trainers', 'Goethe Exam Prep', 'Cultural Immersion'],
-    color: '#ef4444',
-    gradient: 'linear-gradient(135deg, #ef4444, #f87171)',
+      'Specialized training for healthcare professionals. Choose from tailored pathways for Beginners and Repeaters, and explore our tiered packages (Ruby to Premium) offering mock tests, live sessions, and expert doctor trainers.',
+    features: ['Beginner & Repeater Paths', 'Ruby to Platinum Packs', 'Expert Doctor Trainers', 'Score Guarantee'],
+    color: '#10b981',
+    gradient: 'linear-gradient(135deg, #10b981, #34d399)',
+  },
+  {
+    icon: '🗣️',
+    title: 'Spoken English',
+    subtitle: 'Fluency & Confidence Building',
+    description:
+      'Master the art of confident communication. Tailored modules for beginners to advanced learners to improve vocabulary, pronunciation, and public speaking skills.',
+    features: ['Interactive Sessions', 'Accent Neutralization', 'Grammar Fundamentals', 'Group Discussions'],
+    color: '#f59e0b',
+    gradient: 'linear-gradient(135deg, #f59e0b, #fbbf24)',
   },
 ];
 

@@ -1,7 +1,6 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import CourseGrid from './components/CourseGrid';
-import OETPackages from './components/OETPackages';
 import VideoLibrary from './components/VideoLibrary';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
@@ -16,7 +15,6 @@ export default function Home() {
       <main>
         <Hero />
         <CourseGrid />
-        <OETPackages />
         <VideoLibrary />
         <Testimonials />
         <Contact />

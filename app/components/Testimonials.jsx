@@ -5,40 +5,52 @@ import styles from './Testimonials.module.css';
 
 const testimonials = [
   {
-    name: 'Aiswarya Menon',
-    role: 'OET Student — Nurse',
-    text: 'Langfort transformed my OET preparation. The trainers were incredibly supportive and the mock tests were exactly like the real exam. Got my desired score on the first attempt!',
-    rating: 5,
-  },
-  {
-    name: 'Dr. Rajesh Kumar',
-    role: 'OET Student — Doctor',
-    text: 'The Platinum Plus pack for doctors was exactly what I needed. Specialized medical scenarios and expert feedback helped me crack OET with a B grade in all modules.',
-    rating: 5,
-  },
-  {
-    name: 'Sneha Thomas',
+    name: 'Arya Haridas',
     role: 'IELTS Student',
-    text: 'I scored Band 8 in IELTS thanks to Langfort! The speaking practice sessions and writing corrections were game-changers. Highly recommend for anyone targeting high bands.',
+    text: 'I am extremely grateful to LangFort Global Education Pvt. Ltd. for their excellent guidance and support throughout my IELTS preparation journey. The training was well-structured, focused, and truly effective.',
     rating: 5,
   },
   {
-    name: 'Arun Prasad',
+    name: 'Ahmad Yaseen',
+    role: 'IELTS Student',
+    text: 'Hands-down the best IELTS prep experience at Langfort Institute! Expert trainers, comprehensive study materials, and a supportive community helped me achieve my desired score. Highly recommend!',
+    rating: 5,
+  },
+  {
+    name: 'Benjamin David',
+    role: 'OET Student',
+    text: "I had a wonderful learning experience. Both Johnson sir and Ann ma'am gave the best tips and guidance necessary to perform for OET (medicine). Even within 15 days, they were able to give me an idea of what to expect and how to answer the questions.",
+    rating: 4.5,
+  },
+  {
+    name: 'Remya Cherian',
+    role: 'OET Student',
+    text: 'LangFort International Academy truly stands out as a premier OET coaching center. With exceptional mentors, up-to-date study materials, personalized speaking and writing sessions, they provide a good learning experience.',
+    rating: 4,
+  },
+  {
+    name: 'Anish Puthan',
     role: 'German Language Student',
-    text: 'Learning German at Langfort was an amazing experience. Fr. Joseph\'s classes from Germany gave us authentic language exposure. Cleared A2 with flying colors!',
+    text: 'I visited Lang Fort, the German Language Study Centre, and it was an exceptional experience. The instructors were highly knowledgeable and passionate about teaching, making lessons both engaging and informative.',
+    rating: 4.5,
+  },
+  {
+    name: 'Bindu Joy',
+    role: 'OET Student',
+    text: 'Langfort International is an exceptional OET teaching center that exceeded my expectations. The instructors are highly knowledgeable and create a supportive learning environment.',
     rating: 5,
   },
   {
-    name: 'Fathima Zahra',
-    role: 'PTE Student',
-    text: 'The PTE coaching at Langfort is top-notch. The AI-based practice tools and computer lab sessions prepared me perfectly. Got 79+ in all sections!',
-    rating: 5,
-  },
-  {
-    name: 'Kevin George',
+    name: 'Prince Devassy',
     role: 'IELTS Student',
-    text: 'Best coaching center in Kerala for IELTS! The faculty is experienced and the study materials are comprehensive. Achieved my target score in just 6 weeks.',
-    rating: 5,
+    text: 'Excellent IELTS coaching with great guidance and support. LIA provided a friendly environment and individual training. My heartfelt gratitude to all LIA tutors and coordinators for making me a UKVI IELTS winner within 2 weeks.',
+    rating: 4.5,
+  },
+  {
+    name: 'Stephen',
+    role: 'Student',
+    text: 'What truly sets Langfort apart is their commitment to individual progress. The instructors go above and beyond to provide feedback and guidance tailored to each student’s needs, ensuring steady improvement.',
+    rating: 4,
   },
 ];
 
@@ -63,7 +75,6 @@ export default function Testimonials() {
     return () => observer.disconnect();
   }, []);
 
-  // Duplicate for infinite scroll
   const marqueeItems = [...testimonials, ...testimonials];
 
   return (
@@ -77,6 +88,10 @@ export default function Testimonials() {
                 <linearGradient id="quoteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#f59e0b" />
                   <stop offset="100%" stopColor="#ef4444" />
+                </linearGradient>
+                <linearGradient id="halfStarGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="50%" stopColor="#f59e0b" />
+                  <stop offset="50%" stopColor="#e5e7eb" />
                 </linearGradient>
               </defs>
               <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z" />
@@ -99,17 +114,25 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* Marquee testimonials */}
+      {/* Auto Scroll Marquee */}
       <div className={styles.marqueeWrapper}>
         <div className={styles.marqueeTrack}>
           {marqueeItems.map((t, i) => (
             <div key={`${t.name}-${i}`} className={styles.testimonialCard}>
               <div className={styles.stars}>
-                {Array.from({ length: t.rating }).map((_, si) => (
-                  <svg key={si} width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
-                ))}
+                {[1, 2, 3, 4, 5].map((starIndex) => {
+                  let fill = '#e5e7eb'; // Empty star color
+                  if (t.rating >= starIndex) {
+                    fill = '#f59e0b'; // Full star color
+                  } else if (t.rating >= starIndex - 0.5) {
+                    fill = 'url(#halfStarGrad)'; // Half star gradient
+                  }
+                  return (
+                    <svg key={starIndex} width="16" height="16" viewBox="0 0 24 24" fill={fill} stroke="none">
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  );
+                })}
               </div>
               <p className={styles.testimonialText}>&ldquo;{t.text}&rdquo;</p>
               <div className={styles.testimonialAuthor}>

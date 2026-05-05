@@ -1,46 +1,38 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './VideoLibrary.module.css';
 
 const videos = [
   {
-    id: 'vOEW9yIDrCk',
-    title: 'OET Listening Part - C | Guided Practice',
-    category: 'OET Listening',
+    id: 'NKjjLO4PxZk',
+    title: 'Langfort Academy - Video 1',
+    category: 'OET',
   },
   {
-    id: 'cMnSp4qEXNM',
-    title: 'OET Writing | Write a letter to patient\'s GP',
-    category: 'OET Writing',
+    id: 'RJbl6trjMrg',
+    title: 'Langfort Academy - Video 2',
+    category: 'IELTS',
   },
   {
-    id: 'GFRiZiWwjgY',
-    title: 'IELTS Speaking | Describe a daily routine',
-    category: 'IELTS Speaking',
+    id: 'MWtNDAcKPTA',
+    title: 'Langfort Academy - Video 3',
+    category: 'PTE',
   },
   {
-    id: 'wWLy5Oo-5Q8',
-    title: 'OET Speaking Tips | Empathizing Phrases & Summarizing',
-    category: 'OET Speaking',
+    id: 'Fgm3ujnBIy0',
+    title: 'Langfort Academy - Video 4',
+    category: 'German Language',
   },
   {
-    id: 'J39RMXgbHng',
-    title: 'OET Speaking Role-play | Abdominal Discomfort',
-    category: 'OET Speaking',
-  },
-  {
-    id: 'QhGZ-8S7PQk',
-    title: 'OET Reading Tips | Strategies for Effective Comprehension',
-    category: 'OET Reading',
+    id: 'ZqwtGaAXUcY',
+    title: 'Langfort Academy - Video 5',
+    category: 'Spoken English',
   },
 ];
 
 export default function VideoLibrary() {
   const sectionRef = useRef(null);
-  const scrollRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -60,30 +52,7 @@ export default function VideoLibrary() {
     return () => observer.disconnect();
   }, []);
 
-  const checkScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
-  useEffect(() => {
-    checkScroll();
-    const el = scrollRef.current;
-    el?.addEventListener('scroll', checkScroll, { passive: true });
-    return () => el?.removeEventListener('scroll', checkScroll);
-  }, []);
-
-  const scroll = (direction) => {
-    if (scrollRef.current) {
-      const scrollAmount = 400;
-      scrollRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const marqueeItems = [...videos, ...videos];
 
   return (
     <section className={styles.section} id="videos" ref={sectionRef}>
@@ -95,38 +64,15 @@ export default function VideoLibrary() {
             Learn from our expert trainers with curated video lessons covering every aspect of your exam preparation.
           </p>
         </div>
+      </div>
 
-        {/* Carousel controls */}
-        <div className={styles.carouselControls}>
-          <button
-            className={`${styles.scrollBtn} ${!canScrollLeft ? styles.scrollBtnDisabled : ''}`}
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft}
-            aria-label="Scroll left"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-          <button
-            className={`${styles.scrollBtn} ${!canScrollRight ? styles.scrollBtnDisabled : ''}`}
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight}
-            aria-label="Scroll right"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Video carousel */}
-        <div className={styles.carousel} ref={scrollRef}>
-          {videos.map((video, i) => (
+      {/* Auto Scroll Marquee */}
+      <div className={styles.marqueeWrapper}>
+        <div className={styles.marqueeTrack}>
+          {marqueeItems.map((video, i) => (
             <div
-              key={video.id}
-              className={`${styles.videoCard} reveal`}
-              style={{ transitionDelay: `${i * 0.08}s` }}
+              key={`${video.id}-${i}`}
+              className={styles.videoCard}
             >
               <div className={styles.thumbnailWrap}>
                 <img
