@@ -4,24 +4,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   padding: 120px 0 80px;
-  background-color: var(--color-bg);
+  background-color: transparent;
 }
 
 /* Animated gradient background - Light Theme */
 .bgGradient {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: linear-gradient(to bottom, #87cefa 0%, #ffffff 100%);
-  z-index: 0;
+  z-index: -2;
 }
 
 /* Floating orbs - Light Theme */
 .bgOrbs {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: -1;
   overflow: hidden;
 }
 

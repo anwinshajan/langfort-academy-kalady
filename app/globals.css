@@ -109,7 +109,7 @@ body {
   font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: transparent;
   overflow-x: hidden;
 }
 
@@ -152,7 +152,9 @@ input, textarea {
 }
 
 .section-dark {
-  background: var(--color-bg-dark);
+  background: rgba(248, 250, 252, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .section-title {
