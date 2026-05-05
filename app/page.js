@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import InteractiveBackground from './components/InteractiveBackground';
+import RunningCharacter from './components/RunningCharacter';
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       </main>
       <Footer />
       <WhatsAppButton />
+      <RunningCharacter />
       <InteractiveBackground />
     </>
   );
