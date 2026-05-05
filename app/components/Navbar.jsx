@@ -49,8 +49,8 @@ export default function Navbar() {
 
         {/* CTA */}
         <div className={styles.navActions}>
-          <a href="#" className={styles.signInLink}>
-            Login / Sign in
+          <a href="#" className={`btn ${styles.navLoginBtn}`}>
+            Student Login
           </a>
           <a href="#contact" className={`btn ${styles.navCta}`}>
             Enroll Now
@@ -92,10 +92,10 @@ export default function Navbar() {
           <li style={{ animationDelay: `${navLinks.length * 0.06}s`, display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center', marginTop: '1rem' }}>
             <a
               href="#"
-              className={styles.mobileSignIn}
+              className={`btn btn-secondary ${styles.mobileCta}`}
               onClick={() => setMobileOpen(false)}
             >
-              Login / Sign in
+              Student Login
             </a>
             <a
               href="#contact"
