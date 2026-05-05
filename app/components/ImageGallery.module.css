@@ -45,14 +45,14 @@
 .marqueeTrack {
   display: flex;
   gap: var(--space-6);
-  animation: marquee 40s linear infinite;
+  animation: marquee 80s linear infinite;
   width: max-content;
 }
 
 .marqueeTrackReverse {
   display: flex;
   gap: var(--space-6);
-  animation: marqueeReverse 40s linear infinite;
+  animation: marqueeReverse 80s linear infinite;
   width: max-content;
   margin-top: var(--space-6);
 }

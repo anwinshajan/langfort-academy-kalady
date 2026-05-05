@@ -11,6 +11,12 @@ const galleryImages = [
   { id: 4, src: '/gallery-4.jpg', alt: 'Langfort Campus 4' },
   { id: 5, src: '/gallery-5.jpg', alt: 'Langfort Campus 5' },
   { id: 6, src: '/gallery-6.jpg', alt: 'Langfort Campus 6' },
+  { id: 7, src: '/gallery-7.jpg', alt: 'Langfort Campus 7' },
+  { id: 8, src: '/gallery-8.jpg', alt: 'Langfort Campus 8' },
+  { id: 9, src: '/gallery-9.jpg', alt: 'Langfort Campus 9' },
+  { id: 10, src: '/gallery-10.jpg', alt: 'Langfort Campus 10' },
+  { id: 11, src: '/gallery-11.jpg', alt: 'Langfort Campus 11' },
+  { id: 12, src: '/gallery-12.jpg', alt: 'Langfort Campus 12' },
 ];
 
 export default function ImageGallery() {
