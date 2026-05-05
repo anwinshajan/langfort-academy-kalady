@@ -1,0 +1,26 @@
+.bgGlow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, rgba(15, 43, 91, 0.08) 0%, rgba(37, 99, 235, 0.04) 30%, rgba(139, 92, 246, 0.02) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0; /* Keeps it behind all content */
+  will-change: transform;
+  mix-blend-mode: multiply; /* Gives a classy depth effect */
+  animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.6; filter: blur(0px); }
+  100% { opacity: 1; filter: blur(10px); }
+}
+
+/* Fallback for devices without hover capability */
+@media (hover: none) and (pointer: coarse) {
+  .bgGlow {
+    display: none;
+  }
+}

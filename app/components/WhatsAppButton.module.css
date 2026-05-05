@@ -1,0 +1,95 @@
+.fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: var(--z-whatsapp);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  text-decoration: none;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.5);
+}
+
+.fab:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-100%) translateX(-12px) translateY(-50%);
+  pointer-events: all;
+}
+
+/* Pulse ring */
+.pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.5);
+  animation: whatsappPulse 2s ease-out infinite;
+}
+
+@keyframes whatsappPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateX(-100%) translateX(-12px) translateY(-50%);
+  background: var(--color-text);
+  color: #fff;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--color-text);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fab {
+    width: 52px;
+    height: 52px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .fab svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tooltip {
+    display: none;
+  }
+}

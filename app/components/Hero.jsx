@@ -1,0 +1,152 @@
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import styles from './Hero.module.css';
+
+export default function Hero() {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const els = heroRef.current?.querySelectorAll(`.${styles.animItem}`);
+    els?.forEach((el) => observer.observe(el));
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <>
+      <section className={styles.hero} id="hero" ref={heroRef}>
+        {/* Animated background */}
+        <div className={styles.bgGradient}></div>
+        <div className={styles.bgOrbs}>
+          <div className={`${styles.orb} ${styles.orb1}`}></div>
+          <div className={`${styles.orb} ${styles.orb2}`}></div>
+          <div className={`${styles.orb} ${styles.orb3}`}></div>
+        </div>
+        <div className={styles.bgGrid} style={{ transform: `translateY(${scrollY * 0.2}px)` }}></div>
+
+        {/* Content */}
+        <div 
+          className={`container ${styles.heroContent}`}
+          style={{ transform: `translateY(${scrollY * 0.4}px)`, opacity: 1 - scrollY / 600 }}
+        >
+          <div className={`${styles.badge} ${styles.animItem}`}>
+            <span className={styles.badgeDot}></span>
+            <span>Now Enrolling for 2026–2027 Batches</span>
+          </div>
+
+          <h1 className={`${styles.headline} ${styles.animItem}`}>
+            One-stop solution for all your{' '}
+            <span className={styles.headlineGradient}>international study</span>{' '}
+            needs.
+          </h1>
+
+          <p className={`${styles.subheadline} ${styles.animItem}`}>
+            Your passport to the world of opportunities. Master IELTS, OET, PTE &amp; German with expert trainers at Kerala&apos;s most trusted language academy.
+          </p>
+
+          <div className={`${styles.ctaGroup} ${styles.animItem}`}>
+            <a href="#programs" className="btn btn-primary btn-lg">
+              <span>Explore Courses</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+            <button
+              className={`btn btn-secondary btn-lg ${styles.videoBtn}`}
+              onClick={() => setIsVideoModalOpen(true)}
+              id="watch-video-btn"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none" />
+              </svg>
+              <span>Watch Orientation Video</span>
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className={`${styles.stats} ${styles.animItem}`}>
+            <div className={styles.stat}>
+              <span className={styles.statNumber}>5000+</span>
+              <span className={styles.statLabel}>Students Trained</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.stat}>
+              <span className={styles.statNumber}>15+</span>
+              <span className={styles.statLabel}>Expert Trainers</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.stat}>
+              <span className={styles.statNumber}>95%</span>
+              <span className={styles.statLabel}>Success Rate</span>
+            </div>
+            <div className={styles.statDivider}></div>
+            <div className={styles.stat}>
+              <span className={styles.statNumber}>10+</span>
+              <span className={styles.statLabel}>Years of Excellence</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className={styles.scrollIndicator}>
+          <div className={styles.scrollMouse}>
+            <div className={styles.scrollDot}></div>
+          </div>
+          <span>Scroll to explore</span>
+        </div>
+      </section>
+
+      {/* Video Modal */}
+      {isVideoModalOpen && (
+        <div className={styles.videoModal} onClick={() => setIsVideoModalOpen(false)} id="video-modal">
+          <div className={styles.videoModalContent} onClick={(e) => e.stopPropagation()}>
+            <button
+              className={styles.videoModalClose}
+              onClick={() => setIsVideoModalOpen(false)}
+              aria-label="Close video"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <div className={styles.videoWrapper}>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                title="Langfort Orientation Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
